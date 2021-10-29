@@ -7,11 +7,14 @@
     "files": {}
   },
   "installed_plugins": {
+    "cordova-plugin-androidx": {
+      "PACKAGE_NAME": "io.cordova.hellocordova"
+    },
     "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "com.bscs.ecommerceApp"
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     },
     "cordova-sqlite-storage": {
-      "PACKAGE_NAME": "com.bscs.ecommerceApp"
+      "PACKAGE_NAME": "io.cordova.hellocordova"
     }
   },
   "dependent_plugins": {}
