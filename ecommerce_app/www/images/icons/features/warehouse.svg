@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="48px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>icons-feature/warehouse</title>
+    <desc>Created with Sketch.</desc>
+    <g id="icons-feature/warehouse" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon-hangar" transform="translate(3.500000, 5.000000)" fill="#F29D00">
+            <path d="M20.3125,0.416015625 L0.9765625,8.47265625 L0,8.91210938 L0,34.9375 L40.625,34.9375 L40.625,8.91210938 L39.6484375,8.47265625 L20.3125,0.416015625 Z M20.3125,3.83398438 L37.5,11.0117188 L37.5,31.8125 L34.375,31.8125 L34.375,14.625 L6.25,14.625 L6.25,31.8125 L3.125,31.8125 L3.125,11.0117188 L20.3125,3.83398438 Z M9.375,17.75 L31.25,17.75 L31.25,31.8125 L9.375,31.8125 L9.375,17.75 Z" id="Shape"></path>
+        </g>
+    </g>
+</svg>

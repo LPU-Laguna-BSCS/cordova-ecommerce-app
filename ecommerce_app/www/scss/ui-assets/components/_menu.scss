@@ -1,0 +1,113 @@
+
+//// category button blocks
+.item-category-grid{
+	height:96px; text-align:center; background-color:$blue-100; color:initial;
+	padding:$spacer/2 0; margin-top:0.25rem; margin-bottom:0.25rem;
+	display:block; border-radius:$border-radius-lg;
+	img, .icon{  
+		width: 32px;
+	    height: 32px;
+	}
+	.icon-wrap{ 
+		margin-top:15px; margin-bottom:7px; display: block; 
+	}
+	
+	i{font-size: 28px; line-height: 32px; color:$primary;}
+
+	.text{ color:$dark; display: block; line-height: 1.2;}
+
+	&:focus{
+		background-color: $blue-200;
+	}
+}
+
+
+//// category button block text bottom
+.item-category-sm{
+	text-align:center; display:block; border-radius:$border-radius;
+	img, .icon{  
+		width: 30px;
+	    height: 30px;
+	}
+	.icon-wrap{ 
+		display:inline-flex;
+		align-items:center;
+		justify-content:center; 
+		text-align:center; 
+		border-radius:$border-radius-lg;
+		margin-bottom:7px; 
+		background-color:$light; 
+		width:70px;  height:70px;
+		padding:$spacer/2 0;
+	}
+	
+	i{ font-size: 26px; line-height: 32px ;}
+	.title{ display: block; color:$text-muted;  font-size:$font-size-xs; line-height: 1.2;}
+
+	&:active{ opacity:.7  }
+	&:hover{ opacity:.7 }
+}
+
+
+//// 
+.item-category-img{
+	overflow:hidden;
+	color:#fff;
+	padding:10px; 
+	margin-bottom:10px;
+	height:100px;
+	border-radius:$border-radius;
+	text-align:center;
+	display:flex;
+	align-items:flex-end;
+	justify-content:center;
+	background-size:cover;
+	color:#fff;
+	.text{ position: relative; z-index: 7; text-shadow: 0 0 7px rgba(#000, .9); letter-spacing: .5px; }
+	&:hover{ color:#fff; }
+}
+
+
+//// navigation list 
+.nav-list{ 
+	margin-left: $spacer;
+}
+
+.btn-list:last-child{
+	 border-bottom: 1px solid #eee; margin-bottom:-1px;
+}
+.btn-list{
+	color:initial; position: relative;
+	font-weight:500;
+	padding:15px $spacer; padding-left:7px; margin-left:-7px; border-bottom: 1px solid #eee; display:block;
+	&:active{ background-color:$gray-100;  }
+	&:hover{ background-color:$gray-100; }
+		
+	.icon-control, .icon-action{ 
+		color:$gray-400;  
+		float: right;
+		position: absolute;
+		right: 15px;
+		top:50%; transform: translateY(-50%);
+	}
+	.title{ color:$text-muted; display:block; }
+}
+
+
+//// category list
+.list-menu{ margin:0; padding:0; list-style:none; 
+	
+	li.nav-item{ 
+		margin-bottom:$spacer / 2; 
+		border-radius:$border-radius;
+		&:active{ background-color:$gray-100; box-shadow:0 0 0 3px $gray-100 }
+		&:hover{ background-color:$gray-100; box-shadow:0 0 0 3px $gray-100}
+	}
+
+	a{ color:$body-color; width:100%; }
+	.icon{ background-color:$blue-100}
+	.title{ font-weight:500;}
+}
+
+
+

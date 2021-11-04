@@ -1,0 +1,79 @@
+/* IF CARD IS LINKED */
+a[class*='product']{
+    color:initial;
+    &:hover{
+        .title{ color:$primary; }
+    }
+}
+
+
+/* BASE STYLE FOR PRODUCT ITEM */
+[class*='product']{
+    color:initial; display: block;
+    .title{color:$gray-700; display: block;  }
+    .badge{  top: 10px; left: 10px; position: absolute;  }
+    .img-wrap{
+        background-color:$gray-100; border:1px solid $gray-200;
+        position:relative; overflow:hidden;
+        img{ height:100%; width:100%;  
+            display:inline-block; 
+            object-fit:cover;
+            mix-blend-mode:multiply;
+        }
+    }
+     p{margin-bottom: 0;}
+    &:hover .img-wrap{ border:1px solid $gray-400; }
+    &:active .img-wrap{ border:1px solid $gray-400;  }   
+    .price-wrap{ line-height:1.2; } 
+}
+
+
+/*  PRODUCT ITEM */
+.product{ 
+    .img-wrap{height:165px;  border-radius:$border-radius-sm;  }
+    .img-wrap.lg{ height:210px;  }
+    .img-wrap.img-book img{ mix-blend-mode:normal;  }
+    .info-wrap{ overflow:hidden;  padding:$spacer; color:$dark; }
+    .text-wrap{  padding-top:$spacer / 2; line-height:1.25 }
+    .title{  font-size:$font-size-sm;}
+    .price{  font-weight:600; }
+}
+
+/*  PRODUCT BOOK */
+.product-book{ 
+    .img-wrap{ height:220px;   border-radius:$border-radius-sm;  }
+    .img-wrap  img{ mix-blend-mode:normal;  }
+    .text-wrap{  padding-top:$spacer / 2; line-height:1.25 }
+    .price{  font-size:$font-size-sm; color:$text-muted}
+}
+
+.scroll-horizontal{
+     .product .img-wrap{height:135px; }
+     .product-book .img-wrap{ height:200px;  }
+
+}
+
+/*  PRODUCT ITEM */
+.product-list{
+    display: flex;
+    .title{ }
+    .rating-wrap{margin-bottom:5px;}
+    .img-wrap{ 
+        display: block;
+        height:120px; width: 130px; 
+        background-color:$gray-200; 
+        border-radius:$border-radius; 
+        img{ mix-blend-mode:normal; }
+    }
+    .img-wrap.lg{ height:210px;  }
+    .info-wrap{ 
+        overflow:hidden;  
+        padding-left:$spacer/2; 
+        color:$dark; 
+        flex-grow:1;
+        width: 70%;
+    }
+   
+}
+
+

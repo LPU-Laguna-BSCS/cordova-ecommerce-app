@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+/////////////////// Linear Gradient
+// usage: .grad{ @include linearGradient(#cccccc, #666666); }
+@mixin linearGradient($top, $bottom){
+    background: $top; /* Old browsers */ 
+    background: linear-gradient(to bottom,  $top 0%,$bottom 100%); /* W3C */
+  } 
+
+//////////////////// diagonal gradient
+// usage: .grad-diagonal{ @include diagonalGradient(#cccccc, #666666); }
+@mixin diagonalGradient($top, $bottom){
+      background: $bottom; /* For browsers that do not support gradients */
+      background: linear-gradient(to bottom right, $top, $bottom); /* Standard syntax */
+}
+
+

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="95px" height="96px" viewBox="0 0 95 96" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Group</title>
+    <g id="Screens" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="subscribed" transform="translate(-132.000000, -190.000000)">
+            <g id="Group" transform="translate(132.000000, 190.000000)">
+                <circle id="Oval" fill="#D5FFD5" cx="47.5" cy="48" r="47.5"></circle>
+                <g transform="translate(20.000000, 19.000000)" fill="#1DC41F" id="check">
+                    <path d="M21,37.73 L12.9033333,29.6333333 C11.9933333,28.7233333 10.5233333,28.7233333 9.61333333,29.6333333 C8.70333333,30.5433333 8.70333333,32.0133333 9.61333333,32.9233333 L19.3666667,42.6766667 C20.2766667,43.5866667 21.7466667,43.5866667 22.6566667,42.6766667 L47.3433333,17.99 C48.2533333,17.08 48.2533333,15.61 47.3433333,14.7 C46.4333333,13.79 44.9633333,13.79 44.0533333,14.7 L21,37.73 Z" id="Icon-Color"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

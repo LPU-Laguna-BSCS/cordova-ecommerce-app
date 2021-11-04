@@ -1,0 +1,24 @@
+[
+  {
+    "id": 1,
+    "account_id": 2,
+    "type": "home",
+    "House No": 42,
+    "street": "4-A",
+    "subdivision": "Cocoland",
+    "city": "San Pablo City",
+    "region": "Laguna",
+    "zip code": 4000
+  },
+  {
+    "id": 2,
+    "account_id": 2,
+    "type": "office",
+    "House No": 45,
+    "street": "Bulaklak",
+    "subdivision": "Southwoods",
+    "city": "Binan",
+    "region": "Laguna",
+    "zip code": 4024
+  }
+]

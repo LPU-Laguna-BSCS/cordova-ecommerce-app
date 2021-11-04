@@ -1,0 +1,42 @@
+.btn-facebook{background-color: #405D9D; color:#fff; &:hover{color:#fff} }
+.btn-instagram{background-color:#E52D27 ; color:#fff; &:hover{color:#fff}}
+.btn-youtube{background-color: #C8046C; color:#fff; &:hover{color:#fff}}
+.btn-twitter{background-color:#42AEEC; color:#fff; &:hover{color:#fff}}
+.btn-google{  background-color:#ff7575; color:#fff; &:hover{color:#fff} }
+
+.btn-fab{
+	width:60px; height:60px; padding:5px; position:fixed; bottom:7%; right:5%;
+	justify-content: center; border-radius:100%; 
+	color:#fff; background:$primary; display:inline-block; display:inline-flex; align-items:center; text-align:center;
+	box-shadow: 0 2px 4px 0 rgba(0,0,0,0.20);
+	i.icon{ font-size:30px; }
+}
+
+.btn-light{ background-color:$light; color:$primary;
+	i{ color:$primary; }
+	&:hover{ background-color:$gray-300;  }
+}
+
+.btn-block{
+	margin-bottom: 10px;
+}
+
+.btn-icon{
+	text-align: center; display: inline-flex; align-items: center; justify-content: center;
+	padding-left:0.6rem; padding-right:0.6rem;
+}
+
+.btn:not(.btn-sm){ font-weight:600; }
+
+.btn-icon:not(.btn-sm){  height:$input-height; width:$input-height;  }
+.btn-icon.btn-sm{  height:$input-height-sm; width:$input-height-sm;   }
+.btn-icon.btn-lg{  height:$input-height-lg;  }
+
+
+.btn{
+	i{ font-size:24px; display:inline-block }
+}
+
+.btn-sm{
+	i{ font-size:20px; line-height: 0.9; }
+}

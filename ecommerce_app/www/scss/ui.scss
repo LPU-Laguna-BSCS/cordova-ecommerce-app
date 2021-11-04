@@ -1,0 +1,45 @@
+/* ==== BASE STYLES ====*/
+
+/* ==================== GLOBAL STYLES ======================= */
+// @import url('../fonts/roboto/font.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* ========================
+INCLUDE STYLES AND COMPONENTS
+===================== */
+
+@import "variables-custom"; 
+
+/* ================== HELPERS  =================== */
+@import "ui-assets/helpers/mixins";
+@import "ui-assets/helpers/helper-classes"; 
+@import "ui-assets/helpers/bg";
+@import "ui-assets/helpers/typography"; 
+
+
+/* ================== SECTIONS =================== */
+@import "ui-assets/sections/header";
+@import "ui-assets/sections/sidebar";
+@import "ui-assets/sections/bottom";
+
+
+/* ================== COMPONENTS =================== */
+@import "ui-assets/components/plugin-styles";
+@import "ui-assets/components/buttons";
+@import "ui-assets/components/items";
+@import "ui-assets/components/lists";
+@import "ui-assets/components/products";
+@import "ui-assets/components/elements.scss";
+@import "ui-assets/components/banners.scss";
+@import "ui-assets/components/menu";
+@import "ui-assets/components/forms";
+
+/* ================== PAGES =================== */
+@import "ui-assets/pages/page-account";
+@import "ui-assets/pages/page-base";
+@import "ui-assets/pages/page-home";
+@import "ui-assets/pages/page-detail";
+@import "ui-assets/pages/page-listing";
+
+
+/////////////////// TEST UCHUN STYLE ////////////////  

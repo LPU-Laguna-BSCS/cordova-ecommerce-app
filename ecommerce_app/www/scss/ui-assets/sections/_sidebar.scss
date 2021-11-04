@@ -1,0 +1,15 @@
+
+
+.nav-sidebar{
+    > a{
+        display: block; padding:10px; color:initial; border-radius: $border-radius; font-weight:500;
+        i{ width:16px; text-align:center; margin-right:20px; display: inline-block; color:$gray-500 }
+     &:hover{ background-color: #eee;}
+    }
+    hr{ margin-top:10px; margin-bottom:10px;}
+}
+
+
+.filter-group{
+    .custom-control, .form-check{ margin-bottom:$spacer; }
+}

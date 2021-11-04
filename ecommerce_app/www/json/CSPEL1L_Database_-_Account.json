@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "username": "admin",
+    "password": "admin",
+    "first_name": "admin",
+    "last_name": "admin",
+    "email": "admin@gmail.com",
+    "birthdate": "1/1/2000",
+    "telephone": 9999999999,
+    "is_admin": "TRUE",
+    "date_joined": "10/2"
+  },
+  {
+    "id": 2,
+    "username": "user",
+    "password": "user",
+    "first_name": "user",
+    "last_name": "user",
+    "email": "user@gmail.com",
+    "birthdate": "2/2/2000",
+    "telephone": 9111111111,
+    "is_admin": "FALSE",
+    "date_joined": "10/13"
+  }
+]

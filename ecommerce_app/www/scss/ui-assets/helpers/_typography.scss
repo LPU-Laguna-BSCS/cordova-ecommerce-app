@@ -1,0 +1,10 @@
+/* --------------------- titles ---------------------- */
+.title-lg{ margin-bottom:$spacer;  padding-left:$spacer;  }
+
+.title-section{ margin-bottom:0;  margin-top:$spacer;  padding-left:$spacer;  }
+
+.title-sm{ font-size:$font-size-sm; text-transform:uppercase; 
+	color:$text-muted; padding-top:1rem; padding-bottom:0.6rem; margin-bottom:0; 
+	display:block; }
+
+p:last-child{ margin-bottom:0  }

@@ -1,0 +1,44 @@
+.app-header{
+	padding:5px 7px; width: 100%; height:60px; z-index:200; top:0;
+	display:flex; justify-content:space-between;  flex-wrap: nowrap; align-items:center; 
+    background-color:#fff;
+    &.hidden{ top:-100%; transition:.5s;  }
+    &.visible{ top:0; transition:.5s; }
+    .logo{
+        max-height: 36px; 
+    }
+    .btn-header:first-child{ margin-right:5px; }
+    .btn-header{
+        position:relative;
+        display:flex;
+        align-items:center; 
+        justify-content:center;
+        border-radius:$border-radius;
+        min-width:38px;
+        padding:10px; 
+        line-height: 1;
+        text-align: center;
+        background-color: transparent;
+        border:0;
+        color:$dark;
+        i{  font-size:28px; }
+    }
+    .btn-header:active, .btn-header:hover{ background-color:rgba(darkblue, .1) }
+    .title-header{ margin:0; flex-grow: 1; padding-left:7px; padding-right:7px; text-align:center; font-size: 1.28rem; }
+
+    .header-right{
+    	min-width: 40px; text-align:right; 
+    }
+}
+
+.app-header.ondark{
+    color:#fff; 
+    .btn-header, .btn-header i{ color:#fff; }
+}
+.app-header.onlight{
+    .btn-header, .btn-header i{ color:$primary; }
+}
+
+body.scrolling-down .app-header, body.scrolling-up .app-header{
+    box-shadow:0 1px 6px rgba($dark, .3);
+}
