@@ -1,4 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
+  var loggedInUser = JSON.parse(storage.getItem("loggedInUser"));
+  if (loggedInUser) {
+    location.href = "index.html";
+  } else {
+    var last_item = document.getElementById("login-menu-bar-last-item");
+    last_item.innerHTML =
+      last_item.innerHTML +
+      `<a href="login.html" class="nav-link active">
+        <i class="icon material-icons md-account_circle"></i
+        ><span class="text">Login</span>
+      </a>`;
+  }
+
   var lb = document.getElementById("login-button");
 
   if (lb) {
@@ -21,7 +34,6 @@ function loginHandler(element) {
         if (password == account.password) {
           alert("Username and password matched!");
           storage.setItem("loggedInUser", JSON.stringify(account));
-          location.href = "index.html";
         } else {
           alert("No account matched.");
         }

@@ -4,9 +4,50 @@ var storage = window.localStorage;
 
 // var selectedProduct, signedInAccount,
 var loggedInUser;
+//
+// var productsSTRING = JSON.stringify(products);
+// storage.setItem("products", productsSTRING);
 
-// var categoriesSTRING = JSON.stringify(categories);
-// storage.setItem("categories", categoriesSTRING);
+document.addEventListener("DOMContentLoaded", function () {
+  var loggedInUser = JSON.parse(storage.getItem("loggedInUser"));
+  if (loggedInUser) {
+    // location.href = "index.html";
+    var last_item = document.getElementById("home-menu-bar-last-item");
+    last_item.innerHTML =
+      last_item.innerHTML +
+      `<a href="profile.html" class="nav-link">
+        <i class="icon material-icons md-account_circle"></i
+        ><span class="text">Profile</span>
+      </a>`;
+  } else {
+    var sign_in_item = document.getElementById("sign-in-menu-bar-last-item");
+    sign_in_item.innerHTML =
+      sign_in_item.innerHTML +
+      `
+      <p class="text-center mx-3">
+        <a href="register.html" class="btn w-100 btn-light">
+          Sign in
+          <i class="material-icons md-arrow_forward"></i>
+        </a>
+      </p>
+      <br />
+      `;
+
+    var last_item = document.getElementById("home-menu-bar-last-item");
+    last_item.innerHTML =
+      last_item.innerHTML +
+      `<a href="login.html" class="nav-link">
+        <i class="icon material-icons md-account_circle"></i
+        ><span class="text">Login</span>
+      </a>`;
+  }
+
+  var lob = document.getElementById("logout-button");
+
+  if (lob) {
+    lob.addEventListener("click", logoutHandler);
+  }
+});
 
 function onDeviceReady() {
   // Cordova is now initialized. Have fun!
@@ -14,8 +55,8 @@ function onDeviceReady() {
   // checkLocalStorage();
 
   // try {
-  //   loggedInUser = storage.getItem("loggedInUser");
-  //   alert(JSON.stringify(loggedInUser));
+  //   acc = storage.getItem("accounts");
+  //   alert(JSON.stringify(acc));
   // } catch (e) {
   //   alert(e);
   // }
@@ -79,25 +120,59 @@ function onDeviceReady() {
   try {
     var category_section = document.getElementById("category_section");
     for (const c of categoriesFromLocalStorage) {
-      if (c.name != "New Arrivals" && c.name != "Best Sellers") {
+      if (
+        c.name != "New Arrivals" &&
+        c.name != "Best Sellers" &&
+        c.name != "Electronics" &&
+        c.name != "Toys and Games"
+      ) {
         category_section.innerHTML =
           category_section.innerHTML +
           `
-          <li class="col-4">
-            <a href="#" class="item-category-grid">
-              <span class="icon-wrap">
-                <img
-                  class="icon"
-                  height="32"
-                  src="images/icons/category-blue/shirt.svg"
-                  alt=""
-                />
-              </span>
-              <small class="text">${c.name}</small>
-            </a>
-        `;
+            <li class="col-4">
+              <a href="category-detail.html?=${c.id}" class="item-category-grid">
+                <span class="icon-wrap">
+                  <img
+                    class="icon"
+                    height="32"
+                    src="${c.icon}"
+                    alt=""
+                  />
+                </span>
+                <small class="text">${c.name}</small>
+              </a>
+          `;
       }
     }
+  } catch (e) {
+    alert(e);
+  }
+
+  cart.html?sku=${sku}
+
+  try {
+    var banner_section = document.getElementById("home-page-banner");
+    var electronics = categoriesFromLocalStorage[4];
+    banner_section.innerHTML =
+      banner_section.innerHTML +
+      `
+            <article
+              class="card card-banner"
+              style="
+                min-height: 160px;
+                background-image: url('${electronics.link}');
+              "
+            >
+              <div class="card-body caption">
+                <h5 class="card-title mb-3">
+                  Electronics:<br />Great offers <br />just started now
+                </h5>
+                <a href="category-detail.html" class="btn btn-sm btn-warning"
+                  >Discover</a
+                >
+              </div>
+            </article>
+          `;
   } catch (e) {
     alert(e);
   }
@@ -111,7 +186,7 @@ function onDeviceReady() {
           new_arrival_section.innerHTML +
           `
         <div class="item">
-            <a href="product-detail.html" class="product">
+            <a href="product-detail.html?id=${d.id}" class="product">
                 <div class="img-wrap"><img src="${d.image}" /></div>
                 <div class="text-wrap">
                     <div class="price">P${d.price}</div>
@@ -135,7 +210,7 @@ function onDeviceReady() {
           best_seller_section.innerHTML +
           `
         <div class="item">
-            <a href="product-detail.html" class="product">
+            <a href="product-detail.html?id=${d.id}" class="product">
                 <div class="img-wrap"><img src="${d.image}" /></div>
                 <div class="text-wrap">
                     <div class="price">P${d.price}</div>
@@ -155,6 +230,16 @@ function onDeviceReady() {
   //   "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png";
   // document.getElementById("image-testing").appendChild(img);
   // alert("this ran");
+}
+
+function logoutHandler(element) {
+  // CHECK DATABASE FOR MATCHING USERNAME AND PASSWORD
+  try {
+    storage.removeItem("loggedInUser");
+    location.href = "index.html";
+  } catch (e) {
+    alert(e);
+  }
 }
 
 function checkLocalStorage() {

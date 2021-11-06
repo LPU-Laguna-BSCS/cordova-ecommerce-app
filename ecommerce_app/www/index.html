@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'; media-src *; img-src * filesystem: data:"
+    />
     <meta charset="utf-8" />
     <meta
       name="viewport"
@@ -14,7 +18,7 @@
     />
     <meta name="”theme-color”" content="”#0d6efd" />
 
-    <title>Shopster - Home</title>
+    <title>Shopzilla - Home</title>
 
     <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
@@ -50,7 +54,9 @@
         <i class="material-icons md-menu"></i>
       </a>
 
-      <h5 class="title-header">Shopzilla</h5>
+      <!-- header change to image -->
+      <!--h5 class="title-header">Shopzilla</h5 -->
+      <img src="https://imgur.com/M0V50Xr.png" height="20px" />
 
       <a href="profile.html" class="btn-header">
         <i class="material-icons md-account_circle"></i>
@@ -67,21 +73,7 @@
         <ul class="row" id="category_section"></ul>
       </section>
 
-      <section class="px-3">
-        <article
-          class="card card-banner"
-          style="
-            min-height: 160px;
-            background-image: url('images/banners/banner1.jpg');
-          "
-        >
-          <div class="card-body caption">
-            <h5 class="card-title mb-3">Great offers <br />just started now</h5>
-            <a href="#" class="btn btn-sm btn-warning">Discover</a>
-          </div>
-        </article>
-      </section>
-
+      <section class="px-3" id="home-page-banner"></section>
       <section>
         <h5 class="title-section">New Arrival</h5>
         <div class="p-3 pb-0 scroll-horizontal" id="new-arrival"></div>
@@ -110,17 +102,13 @@
         <div class="d-flex">
           <a href="#" class="m-1 btn w-100 btn-sm btn-light"> Help </a>
           <a href="#" class="m-1 btn w-100 btn-sm btn-light"> Payment </a>
-          <a href="#" class="m-1 btn w-100 btn-sm btn-light"> About </a>
+          <a href="about.html" class="m-1 btn w-100 btn-sm btn-light">
+            About
+          </a>
         </div>
       </section>
 
-      <p class="text-center mx-3">
-        <a href="index.html" class="btn w-100 btn-light">
-          <i class="material-icons md-arrow_back"></i>
-          All pages
-        </a>
-      </p>
-      <br />
+      <div id="sign-in-menu-bar-last-item"></div>
     </main>
     <!-- app-content.// -->
 
@@ -137,10 +125,7 @@
         <i class="icon material-icons md-shopping_cart"></i
         ><span class="text">My cart</span>
       </a>
-      <a href="login.html" class="nav-link">
-        <i class="icon material-icons md-favorite"></i
-        ><span class="text">Login</span>
-      </a>
+      <div id="home-menu-bar-last-item"></div>
     </nav>
     <!-- nav-bottom -->
 
@@ -166,9 +151,6 @@
       </header>
       <article class="offcanvas-body">
         <nav class="nav-sidebar mt-2">
-          <a href="index.html">
-            <i class="material-icons md-apps"></i> All pages
-          </a>
           <a href="#">
             <i class="material-icons md-local_offer"></i> New offers</a
           >
@@ -188,6 +170,9 @@
           <a href="#"> <i class="material-icons md-settings"></i> Settings</a>
           <a href="#">
             <i class="material-icons md-local_shipping"></i> My orders</a
+          >
+          <a href="#" id="logout-button">
+            <i class="material-icons md-log_out"></i> Logout</a
           >
         </nav>
       </article>

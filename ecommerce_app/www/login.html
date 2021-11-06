@@ -49,7 +49,7 @@
       </div>
 
       <section class="p-3">
-        <form action="" class="m-3">
+        <form action="" class="m-3" name="login" method="GET">
           <div class="mb-2">
             <input
               type="text"
@@ -68,11 +68,9 @@
               required
             />
           </div>
-          <input
-            class="btn btn-primary w-100"
-            id="login-button"
-            value="Sign in"
-          />
+          <button class="btn btn-primary w-100" type="submit" id="login-button">
+            Sign in
+          </button>
         </form>
 
         <p class="text-center p-3">
@@ -95,10 +93,7 @@
         <i class="icon material-icons md-shopping_cart"></i
         ><span class="text">My cart</span>
       </a>
-      <a href="profile.html" class="nav-link active">
-        <i class="icon material-icons md-account_circle"></i
-        ><span class="text">Profile</span>
-      </a>
+      <div id="login-menu-bar-last-item"></div>
     </nav>
     <!-- nav-bottom -->
 
