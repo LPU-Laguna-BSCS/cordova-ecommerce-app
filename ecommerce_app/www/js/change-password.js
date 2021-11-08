@@ -57,6 +57,9 @@ function changePasswordHandler(element) {
                   JSON.stringify(accountsFromLocalStorage)
                 );
                 storage.removeItem("loggedInUser");
+                alert(
+                  "Successfully changed password. You will now be logged out."
+                );
                 location.href = "login.html";
                 break;
               }

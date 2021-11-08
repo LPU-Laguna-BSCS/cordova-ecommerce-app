@@ -4,8 +4,9 @@ document.addEventListener("deviceready", onDeviceReady, false);
 var storage = window.localStorage;
 
 var loggedInUser;
-// var categoriesSTRING = JSON.stringify(categories);
-// storage.setItem("categories", categoriesSTRING);
+
+// var accountsSTRING = JSON.stringify(accounts);
+// storage.setItem("accounts", accountsSTRING);
 
 // Event listener when page is loaded
 document.addEventListener("DOMContentLoaded", function () {

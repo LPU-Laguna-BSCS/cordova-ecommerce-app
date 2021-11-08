@@ -76,6 +76,11 @@ function registerHandler(element) {
       createAccount = false;
       break;
     }
+    if (password == "" && confirmPassword == "") {
+      alert("Missing passwords");
+      createAccount = false;
+      break;
+    }
   }
 
   if (createAccount) {
@@ -83,6 +88,7 @@ function registerHandler(element) {
       // ADD USERNAME AND PASSWORD TO DATABASE
       if (isUserNameValid(username) && StrengthChecker(password)) {
         var accountDetails = {
+          id: accountsFromLocalStorage.length + 1,
           username: username,
           password: password,
           first_name: firstname,
@@ -105,6 +111,8 @@ function registerHandler(element) {
       }
     } else if (password != confirmPassword && password != "") {
       alert("Passwords do not match!");
+    } else {
+      alert("Missing passwords");
     }
   }
 }
