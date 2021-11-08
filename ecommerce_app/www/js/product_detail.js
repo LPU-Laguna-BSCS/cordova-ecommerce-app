@@ -1,6 +1,9 @@
-document.addEventListener("DOMContentLoaded", function () {
-  var storage = window.localStorage;
+// Storage variables
+var storage = window.localStorage;
+var productData;
 
+// Event listener when page is loaded
+document.addEventListener("DOMContentLoaded", function () {
   var productsFromLocalStorage = JSON.parse(storage.getItem("products"));
   var skusFromLocalStorage = JSON.parse(storage.getItem("skus"));
   var imagesFromLocalStorage = JSON.parse(storage.getItem("images"));
@@ -9,6 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
     storage.getItem("categories_product")
   );
 
+  var atc = document.getElementById("add-to-cart-button");
+
+  if (atc) {
+    atc.addEventListener("click", addToCartHandler);
+  }
+
+  // Returns an array of all products in the database
   var data = [];
 
   try {
@@ -65,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   try {
     var id = parseInt(location.href.split("=")[1]);
-    var productData;
     var similarItems = [];
 
     for (const product of data) {
@@ -115,7 +124,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var product_title = document.getElementById("product-title");
     product_title.innerHTML = productData.name;
     var product_price = document.getElementById("product-price");
-    product_price.innerHTML = "From P" + productData.price;
+    product_price.innerHTML =
+      "From " + formatter.format(parseInt(productData.price));
 
     var product_variant_section = document.getElementById("product_variant");
     product_variant_section.innerHTML = productData.variant;
@@ -124,17 +134,35 @@ document.addEventListener("DOMContentLoaded", function () {
       "product-variant-options"
     );
     for (let i = 0; i < productData.variant_options.length; i++) {
-      product_variant_options_section.innerHTML =
-        product_variant_options_section.innerHTML +
-        `
-            <input type="radio" class="btn-check" name="btnradio" id="btnradio${
-              i + 1
-            }" autocomplete="off">
-            <label class="btn btn-outline-primary" for="btnradio${i + 1}">${
-          productData.variant_options[i].variant_option
-        }</label>
+      if (productData.variant_options[i].quantity > 0) {
+        product_variant_options_section.innerHTML =
+          product_variant_options_section.innerHTML +
+          `
+              <input type="radio" class="btn-check" name="btnradio" id="btnradio${
+                i + 1
+              }" autocomplete="off" value="${
+            productData.variant_options[i].id
+          }" onclick="changePrimary(${productData.variant_options[i].id});">
+              <label class="btn btn-outline-primary" for="btnradio${i + 1}">${
+            productData.variant_options[i].variant_option
+          }</label>
 
-          `;
+            `;
+      } else {
+        product_variant_options_section.innerHTML =
+          product_variant_options_section.innerHTML +
+          `
+              <input type="radio" disabled class="btn-check" name="btnradio" id="btnradio${
+                i + 1
+              }" autocomplete="off" value="${
+            productData.variant_options[i].id
+          }" onclick="changePrimary(${productData.variant_options[i].id});">
+              <label class="btn btn-outline-primary" for="btnradio${i + 1}">${
+            productData.variant_options[i].variant_option
+          }</label>
+
+            `;
+      }
     }
 
     var product_category = document.getElementById("product-category");
@@ -146,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function () {
           id = item.id;
         }
       }
-      var html = `<a href="category_detail.html&id=${id}">${cat}</a>`;
+      var html = `<a href="category-detail.html?id=${id}">${cat}</a>`;
       category_links.push(html);
     }
     var category_links_joined = category_links.join(",");
@@ -173,7 +201,9 @@ document.addEventListener("DOMContentLoaded", function () {
           <a href="product-detail.html?id=${similar_item.id}" class="product">
             <div class="img-wrap"><img src="${similar_item.images[0]}" /></div>
             <div class="text-wrap">
-              <div class="price">P${similar_item.price}</div>
+              <div class="price">${formatter.format(
+                parseInt(similar_item.price)
+              )}</div>
               <!-- price .// -->
               <p class="title">${similar_item.name.slice(0, 80)}</p>
             </div>
@@ -184,4 +214,70 @@ document.addEventListener("DOMContentLoaded", function () {
   } catch (e) {
     alert(e);
   }
+});
+
+// Changes the primary image in the page to match the variant option when variant option is chosen
+function changePrimary(id) {
+  try {
+    var id_parsed = parseInt(id);
+    var primary = document.getElementById("primary-image");
+
+    var skusFromLocalStorage = JSON.parse(storage.getItem("skus"));
+    for (const sku of skusFromLocalStorage) {
+      if (sku.id == id_parsed) {
+        if (sku.image != "") {
+          primary.innerHTML = `
+            <a
+              href="${sku.image}"
+              data-fancybox="gallery"
+              class="img-big-wrap"
+              ><img src="${sku.image}"
+            /></a>`;
+        }
+      }
+    }
+  } catch (e) {
+    alert(e);
+  }
+}
+
+// Event handler for when the add to cart button is clicked
+function addToCartHandler(element) {
+  try {
+    var chosen_variant = $('input[type="radio"]:checked').val();
+    var chosen_variant_parsed = parseInt(chosen_variant);
+
+    if (isNaN(chosen_variant_parsed)) {
+      chosen_variant_parsed = productData.variant_options[0].id;
+    }
+
+    var loggedInUser = JSON.parse(storage.getItem("loggedInUser"));
+    if (loggedInUser) {
+      var cartInLocalStorage = JSON.parse(storage.getItem("cart"));
+      var cartData = {
+        id: cartInLocalStorage.length + 1,
+        account_id: loggedInUser.id,
+        sku_id: chosen_variant_parsed,
+        quantity: 1,
+        is_ongoing: "FALSE",
+        is_completed: "FALSE",
+      };
+      cartInLocalStorage.push(cartData);
+      storage.setItem("cart", JSON.stringify(cartInLocalStorage));
+    } else {
+      location.href = "login.html";
+    }
+  } catch (e) {
+    alert(e);
+  }
+}
+
+// Currency formatter to be Php XX.XX
+var formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "PHP",
+
+  // These options are needed to round to whole numbers if that's what you want.
+  //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+  //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
 });

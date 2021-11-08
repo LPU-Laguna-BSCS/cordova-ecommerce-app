@@ -12,6 +12,9 @@
     },
     "cordova-sqlite-storage": {
       "PACKAGE_NAME": "com.bscs.ecommerceApp"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.bscs.ecommerceApp"
     }
   },
   "dependent_plugins": {}

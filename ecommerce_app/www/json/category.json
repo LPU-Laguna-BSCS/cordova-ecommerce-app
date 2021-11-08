@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "New Arrivals",
+    "link": "https://images.unsplash.com/photo-1519751138087-5bf79df62d5b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+    "icon": "",
+    "icon_white": "https://i.ibb.co/5hkyS8X/icons8-new-50-2.png"
+  },
+  {
+    "id": 2,
+    "name": "Best Sellers",
+    "link": "https://images.unsplash.com/photo-1589828994425-cee7c6e8dbf8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2112&q=80",
+    "icon": "",
+    "icon_white": "https://i.ibb.co/VD3PPcR/icons8-best-seller-50.png"
+  },
+  {
+    "id": 3,
+    "name": "Clothing",
+    "link": "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80",
+    "icon": "https://i.imgur.com/qwNecME.png",
+    "icon_white": "https://i.ibb.co/4Y8Ckjr/qw-Nec-ME-1.png"
+  },
+  {
+    "id": 4,
+    "name": "Pet Supplies",
+    "link": "https://images.unsplash.com/photo-1508948956644-0017e845d797?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1234&q=80",
+    "icon": "https://i.imgur.com/xJszGHF.png",
+    "icon_white": "https://i.ibb.co/FbJyddt/x-Jsz-GHF-1.png"
+  },
+  {
+    "id": 5,
+    "name": "Electronics",
+    "link": "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1625&q=80",
+    "icon": "https://i.imgur.com/yIe5okR.png",
+    "icon_white": "https://i.ibb.co/tXPTCgV/y-Ie5ok-R-1.png"
+  },
+  {
+    "id": 6,
+    "name": "Groceries",
+    "link": "https://images.unsplash.com/photo-1543168256-418811576931?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80",
+    "icon": "https://i.imgur.com/cewA64p.png",
+    "icon_white": "https://i.ibb.co/fdRWgpx/cew-A64p-1.png"
+  },
+  {
+    "id": 7,
+    "name": "Beauty Products",
+    "link": "https://images.unsplash.com/photo-1596462502278-27bfdc403348?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1180&q=80",
+    "icon": "https://i.imgur.com/LjCWEOp.png",
+    "icon_white": "https://i.ibb.co/CzZJCVy/Lj-CWEOp-1.png"
+  },
+  {
+    "id": 8,
+    "name": "Appliances",
+    "link": "https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80",
+    "icon": "https://i.imgur.com/dDObC0A.png",
+    "icon_white": "https://i.ibb.co/NjfHGGD/d-DOb-C0-A-1.png"
+  },
+  {
+    "id": 9,
+    "name": "Sports and Outdoors",
+    "link": "https://images.unsplash.com/photo-1533560904424-a0c61dc306fc?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80",
+    "icon": "https://i.imgur.com/xD3crCv.png",
+    "icon_white": "https://i.ibb.co/wKXcNqM/x-D3cr-Cv-1.png"
+  },
+  {
+    "id": 10,
+    "name": "Toys and Games",
+    "link": "https://images.unsplash.com/photo-1587654780291-39c9404d746b?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80",
+    "icon": "https://i.imgur.com/cfXL6M2.png",
+    "icon_white": "https://i.ibb.co/Hnq1NTC/cf-XL6-M2-1.png"
+  }
+]

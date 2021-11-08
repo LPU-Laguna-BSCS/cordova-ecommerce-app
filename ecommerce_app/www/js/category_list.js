@@ -1,5 +1,26 @@
+// Storage variables
+var storage = window.localStorage;
+
+// Event listener when page is loaded
 document.addEventListener("DOMContentLoaded", function () {
-  var storage = window.localStorage;
+  var loggedInUser = JSON.parse(storage.getItem("loggedInUser"));
+  var last_item = document.getElementById("home-menu-bar-last-item");
+
+  if (loggedInUser) {
+    last_item.innerHTML =
+      last_item.innerHTML +
+      `<a href="profile.html" class="nav-link">
+        <i class="icon material-icons md-account_circle"></i
+        ><span class="text">Profile</span>
+      </a>`;
+  } else {
+    last_item.innerHTML =
+      last_item.innerHTML +
+      `<a href="login.html" class="nav-link">
+        <i class="icon material-icons md-account_circle"></i
+        ><span class="text">Login</span>
+      </a>`;
+  }
 
   var productsFromLocalStorage = JSON.parse(storage.getItem("products"));
   var skusFromLocalStorage = JSON.parse(storage.getItem("skus"));
@@ -9,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function () {
     storage.getItem("categories_product")
   );
 
+  // Returns an array of all products in the database
   var data = [];
 
   try {
@@ -63,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
+  //Displays the list of category of products and the number of items
   var category_list_section = document.getElementById("category_list_section");
   for (const c of categoriesFromLocalStorage) {
     var count;

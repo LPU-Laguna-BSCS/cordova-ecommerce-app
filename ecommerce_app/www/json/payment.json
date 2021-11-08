@@ -2,15 +2,19 @@
   {
     "id": 1,
     "account_id": 2,
+    "name": "Aeronn",
     "provider": "Visa",
     "card_number": 4111111111111111,
-    "expiration_date": "10/2025"
+    "expiration_date": "10/2025",
+    "cvv": 123
   },
   {
     "id": 2,
     "account_id": 2,
+    "name": "Ronnel",
     "provider": "Mastercard",
     "card_number": 5555555555554444,
-    "expiration_date": "11/2027"
+    "expiration_date": "11/2027",
+    "cvv": 123
   }
 ]

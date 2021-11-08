@@ -1,6 +1,8 @@
+// Event listener when page is loaded
 document.addEventListener("DOMContentLoaded", function () {
   var storage = window.localStorage;
 
+  // Storage variables
   var productsFromLocalStorage = JSON.parse(storage.getItem("products"));
   var skusFromLocalStorage = JSON.parse(storage.getItem("skus"));
   var imagesFromLocalStorage = JSON.parse(storage.getItem("images"));
@@ -9,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     storage.getItem("categories_product")
   );
 
+  // Returns an array of all products in the database
   var data = [];
 
   try {
@@ -92,10 +95,10 @@ document.addEventListener("DOMContentLoaded", function () {
         `
           <div class="item-xs">
             <a href="category-detail.html?id=${c.id}" class="item-category-sm">
-              <div class="icon-wrap bg-primary-dark shadow-sm">
+              <div class="icon-wrap bg-primary-light shadow-sm">
                 <img
                   class="icon"
-                  src="${c.icon}"
+                  src="${c.icon_white}"
                   alt=""
                 />
               </div>
@@ -109,6 +112,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   try {
+    //Displays list of products
     var product_list_section = document.getElementById("product-list-section");
     for (const c of categoryItems) {
       product_list_section.innerHTML =
@@ -122,14 +126,10 @@ document.addEventListener("DOMContentLoaded", function () {
               </a>
             </div>
             <div class="info-wrap">
-              <p class="title">${c.name.slice(0, 80)}</p>
-              <div class="price mb-2">P${c.price}</div>
-              <div>
-                <a href="#" class="btn btn-sm btn-light"> Add to cart </a>
-                <a href="#" class="btn btn-icon btn-sm btn-light">
-                  <i class="material-icons md-favorite_border"></i>
-                </a>
-              </div>
+              <p class="title">${c.name.slice(0, 80)}...</p>
+              <div class="price mb-2">${formatter.format(
+                parseInt(c.price)
+              )}</div>
             </div>
           </article>
           <!-- product-list end// -->
@@ -140,4 +140,14 @@ document.addEventListener("DOMContentLoaded", function () {
   } catch (e) {
     alert(e);
   }
+});
+
+// Currency formatter to be Php XX.XX
+var formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "PHP",
+
+  // These options are needed to round to whole numbers if that's what you want.
+  //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+  //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
 });

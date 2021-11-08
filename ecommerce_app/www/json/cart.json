@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "account_id": 1,
+    "sku_id": 53,
+    "quantity": 1,
+    "is_ongoing": "TRUE",
+    "is_completed": "FALSE"
+  },
+  {
+    "id": 2,
+    "account_id": 1,
+    "sku_id": 60,
+    "quantity": 1,
+    "is_ongoing": "FALSE",
+    "is_completed": "TRUE"
+  },
+  {
+    "id": 3,
+    "account_id": 1,
+    "sku_id": 75,
+    "quantity": 1,
+    "is_ongoing": "FALSE",
+    "is_completed": "FALSE"
+  },
+  {
+    "id": 4,
+    "account_id": 1,
+    "sku_id": 85,
+    "quantity": 1,
+    "is_ongoing": "FALSE",
+    "is_completed": "FALSE"
+  },
+  {
+    "id": 5,
+    "account_id": 2,
+    "sku_id": 20,
+    "quantity": 1,
+    "is_ongoing": "TRUE",
+    "is_completed": "FALSE"
+  },
+  {
+    "id": 6,
+    "account_id": 2,
+    "sku_id": 32,
+    "quantity": 1,
+    "is_ongoing": "FALSE",
+    "is_completed": "TRUE"
+  },
+  {
+    "id": 7,
+    "account_id": 2,
+    "sku_id": 10,
+    "quantity": 2,
+    "is_ongoing": "FALSE",
+    "is_completed": "FALSE"
+  },
+  {
+    "id": 8,
+    "account_id": 2,
+    "sku_id": 44,
+    "quantity": 1,
+    "is_ongoing": "FALSE",
+    "is_completed": "FALSE"
+  }
+]

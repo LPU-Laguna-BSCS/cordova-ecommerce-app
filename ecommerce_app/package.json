@@ -16,6 +16,7 @@
     "cordova-android": "^9.1.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-androidx": "^3.0.0",
+    "cordova-plugin-splashscreen": "^6.0.0",
     "cordova-plugin-whitelist": "^1.3.4",
     "cordova-sqlite-storage": "^6.0.0"
   },
@@ -23,7 +24,8 @@
     "plugins": {
       "cordova-plugin-whitelist": {},
       "cordova-plugin-androidx": {},
-      "cordova-sqlite-storage": {}
+      "cordova-sqlite-storage": {},
+      "cordova-plugin-splashscreen": {}
     },
     "platforms": [
       "browser",

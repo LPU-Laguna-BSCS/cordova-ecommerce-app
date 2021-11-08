@@ -1,3 +1,4 @@
+// Event listener when page is loaded
 document.addEventListener("DOMContentLoaded", function () {
   var loggedInUser = JSON.parse(storage.getItem("loggedInUser"));
   if (loggedInUser) {
@@ -19,8 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+// Storage variable
 var storage = window.localStorage;
 
+// Event handler for when the login button is clicked
 function loginHandler(element) {
   // On click Code
   var username = document.getElementById("login-username").value;

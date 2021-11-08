@@ -1,3 +1,4 @@
+// Event listener when page is loaded
 document.addEventListener("DOMContentLoaded", function () {
   var loggedInUser = JSON.parse(storage.getItem("loggedInUser"));
   if (loggedInUser) {
@@ -84,8 +85,8 @@ function registerHandler(element) {
         var accountDetails = {
           username: username,
           password: password,
-          firstname: firstname,
-          lastname: lastname,
+          first_name: firstname,
+          last_name: lastname,
           email: email,
           birthdate: birthdate,
           telephone: phone,

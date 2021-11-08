@@ -1,17 +1,31 @@
+// Event listener for when device is ready
 document.addEventListener("deviceready", onDeviceReady, false);
 
 var storage = window.localStorage;
 
-// var selectedProduct, signedInAccount,
 var loggedInUser;
-//
-// var productsSTRING = JSON.stringify(products);
-// storage.setItem("products", productsSTRING);
+// var categoriesSTRING = JSON.stringify(categories);
+// storage.setItem("categories", categoriesSTRING);
 
+// Event listener when page is loaded
 document.addEventListener("DOMContentLoaded", function () {
   var loggedInUser = JSON.parse(storage.getItem("loggedInUser"));
+
+  // Sets components to either go to login or profile page depending on whether user is logged in
   if (loggedInUser) {
     // location.href = "index.html";
+
+    //Displays an account circle icon that redirects user to Profile page
+    var header_item = document.getElementById("home-header-last-item");
+    header_item.innerHTML =
+      header_item.innerHTML +
+      `
+      <a href="profile.html" class="btn-header">
+      <i class="material-icons md-account_circle"></i>
+      </a>
+      `;
+
+    //Displays "Profile" when user is logged in
     var last_item = document.getElementById("home-menu-bar-last-item");
     last_item.innerHTML =
       last_item.innerHTML +
@@ -19,7 +33,45 @@ document.addEventListener("DOMContentLoaded", function () {
         <i class="icon material-icons md-account_circle"></i
         ><span class="text">Profile</span>
       </a>`;
+
+    //Displays basic account information about the user on the sidebar
+    var sidebar_account_item = document.getElementById("home-sidebar-account");
+    sidebar_account_item.innerHTML =
+      sidebar_account_item.innerHTML +
+      `<img src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-File.png" class="icon avatar-sm" alt="" />
+        <div class="text">
+          <h6 class="mb-0">Hi ${loggedInUser.first_name}</h6>
+        </div>`;
+
+    //Sidebar Contents
+    var sidebar_item = document.getElementById("home-sidebar-section");
+    sidebar_item.innerHTML =
+      sidebar_item.innerHTML +
+      `<nav class="nav-sidebar mt-2">
+        <a href="#">
+        <a href="category-detail.html?id=1"><i class="material-icons md-local_offer"></i> New arrivals</a>
+          <a href="category-detail.html?id=2"> <i class="material-icons md-store"></i> Best Sellers </a>
+        <a href="cart.html"> <i class="material-icons md-local_shipping"></i> My Orders</a>
+        <a href="#"><i class="material-icons md-chat"></i> Payment</a>
+        <hr />
+        <a href="about.html"><i class="material-icons md-local_police"></i> About us</a>
+        <a href="profile.html"><i class="material-icons md-account_circle"></i> Profile</a>
+        <hr />
+        <a href="#" id="logout-button">
+          <i class="material-icons md-log_out"></i> Logout</a>
+      </nav>`;
   } else {
+    //Displays an account circle icon that redirects user to login page
+    var header_item = document.getElementById("home-header-last-item");
+    header_item.innerHTML =
+      header_item.innerHTML +
+      `
+      <a href="login.html" class="btn-header">
+      <i class="material-icons md-account_circle"></i>
+      </a>
+      `;
+
+    //Displays "Sign in" button when user is not logged in
     var sign_in_item = document.getElementById("sign-in-menu-bar-last-item");
     sign_in_item.innerHTML =
       sign_in_item.innerHTML +
@@ -33,6 +85,7 @@ document.addEventListener("DOMContentLoaded", function () {
       <br />
       `;
 
+    //Displays "Login" when user is  not logged in
     var last_item = document.getElementById("home-menu-bar-last-item");
     last_item.innerHTML =
       last_item.innerHTML +
@@ -40,6 +93,27 @@ document.addEventListener("DOMContentLoaded", function () {
         <i class="icon material-icons md-account_circle"></i
         ><span class="text">Login</span>
       </a>`;
+
+    var sidebar_account_item = document.getElementById("home-sidebar-account");
+    sidebar_account_item.innerHTML =
+      sidebar_account_item.innerHTML +
+      `<img src="https://www.pngall.com/wp-content/uploads/5/Profile-PNG-File.png" class="icon avatar-sm" alt="" />
+        <div class="text">
+           <h6 class="mb-0">Hi Guest</h6>
+        </div>`;
+
+    var sidebar_item = document.getElementById("home-sidebar-section");
+    sidebar_item.innerHTML =
+      sidebar_item.innerHTML +
+      `<nav class="nav-sidebar mt-2">
+      <a href="category-detail.html?id=1"><i class="material-icons md-local_offer"></i> New arrivals</a>
+      <a href="category-detail.html?id=2"> <i class="material-icons md-store"></i> Best Sellers </a>
+      <hr />
+      <a href="about.html"><i class="material-icons md-local_police"></i> About us</a>
+      <hr />
+      <a href="login.html"><i class="material-icons md-account_circle"></i> Login</a>
+      <a href="register.html"><i class="material-icons md-arrow_forward"></i> Sign up</a>
+     </nav>`;
   }
 
   var lob = document.getElementById("logout-button");
@@ -49,18 +123,13 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+// Event handler for when device is ready
 function onDeviceReady() {
   // Cordova is now initialized. Have fun!
   console.log("Running cordova-" + cordova.platformId + "@" + cordova.version);
   // checkLocalStorage();
 
-  // try {
-  //   acc = storage.getItem("accounts");
-  //   alert(JSON.stringify(acc));
-  // } catch (e) {
-  //   alert(e);
-  // }
-
+  // Storage variables
   var productsFromLocalStorage = JSON.parse(storage.getItem("products"));
   var skusFromLocalStorage = JSON.parse(storage.getItem("skus"));
   var imagesFromLocalStorage = JSON.parse(storage.getItem("images"));
@@ -69,6 +138,7 @@ function onDeviceReady() {
     storage.getItem("categories_product")
   );
 
+  // Returns an array of all products in the database
   var data = [];
 
   try {
@@ -148,9 +218,8 @@ function onDeviceReady() {
     alert(e);
   }
 
-  cart.html?sku=${sku}
-
   try {
+    //Displays a banner for Electronics Category
     var banner_section = document.getElementById("home-page-banner");
     var electronics = categoriesFromLocalStorage[4];
     banner_section.innerHTML =
@@ -167,9 +236,7 @@ function onDeviceReady() {
                 <h5 class="card-title mb-3">
                   Electronics:<br />Great offers <br />just started now
                 </h5>
-                <a href="category-detail.html" class="btn btn-sm btn-warning"
-                  >Discover</a
-                >
+                <a href="category-detail.html?=${electronics.id}" class="btn btn-sm btn-warning">Discover</a>
               </div>
             </article>
           `;
@@ -178,6 +245,7 @@ function onDeviceReady() {
   }
 
   try {
+    //Displays list of products from New Arrivals category
     var new_arrival_section = document.getElementById("new-arrival");
     for (const d of data) {
       var c = d.categories;
@@ -189,7 +257,9 @@ function onDeviceReady() {
             <a href="product-detail.html?id=${d.id}" class="product">
                 <div class="img-wrap"><img src="${d.image}" /></div>
                 <div class="text-wrap">
-                    <div class="price">P${d.price}</div>
+                    <div class="price">${formatter.format(
+                      parseInt(d.price)
+                    )}</div>
                     <p class="title">${d.name.slice(0, 80)}...</p>
                 </div>
             </a>
@@ -202,6 +272,7 @@ function onDeviceReady() {
   }
 
   try {
+    //Displays list of products from Best Sellers category
     var best_seller_section = document.getElementById("best-sellers");
     for (const d of data) {
       var c = d.categories;
@@ -213,7 +284,9 @@ function onDeviceReady() {
             <a href="product-detail.html?id=${d.id}" class="product">
                 <div class="img-wrap"><img src="${d.image}" /></div>
                 <div class="text-wrap">
-                    <div class="price">P${d.price}</div>
+                    <div class="price">${formatter.format(
+                      parseInt(d.price)
+                    )}</div>
                     <p class="title">${d.name.slice(0, 80)}...</p>
                 </div>
             </a>
@@ -224,14 +297,19 @@ function onDeviceReady() {
   } catch (e) {
     alert(e);
   }
-
-  // var img = new Image();
-  // img.src =
-  //   "https://upload.wikimedia.org/wikipedia/commons/4/47/PNG_transparency_demonstration_1.png";
-  // document.getElementById("image-testing").appendChild(img);
-  // alert("this ran");
 }
 
+// Currency formatter to be Php XX.XX
+var formatter = new Intl.NumberFormat("en-US", {
+  style: "currency",
+  currency: "PHP",
+
+  // These options are needed to round to whole numbers if that's what you want.
+  //minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
+  //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
+});
+
+// Event handler for when the logout button is clicked
 function logoutHandler(element) {
   // CHECK DATABASE FOR MATCHING USERNAME AND PASSWORD
   try {
@@ -242,6 +320,7 @@ function logoutHandler(element) {
   }
 }
 
+// Tests if local storage has data propagated
 function checkLocalStorage() {
   try {
     var productsFromLocalStorage = JSON.parse(storage.getItem("products"));
@@ -269,6 +348,12 @@ function checkLocalStorage() {
 
     var paymentsFromLocalStorage = JSON.parse(storage.getItem("payments"));
     alert(JSON.stringify(paymentsFromLocalStorage[0]));
+
+    var cartFromLocalStorage = JSON.parse(storage.getItem("cart"));
+    alert(JSON.stringify(cartFromLocalStorage[0]));
+
+    var ordersFromLocalStorage = JSON.parse(storage.getItem("orders"));
+    alert(JSON.stringify(ordersFromLocalStorage[0]));
   } catch (e) {
     alert(e);
   }

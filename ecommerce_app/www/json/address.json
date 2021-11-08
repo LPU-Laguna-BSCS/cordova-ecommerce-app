@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "account_id": 2,
+    "name": "Aeronn",
+    "email": "aeronn@gmail.com",
+    "phone": 639999999999,
+    "region": "Laguna",
+    "address": "42 4-A Cocoland Subd., San Pablo City",
+    "zip code": 4000
+  },
+  {
+    "id": 2,
+    "account_id": 2,
+    "name": "Ronnel",
+    "email": "ronnel@gmail.com",
+    "phone": 639999999999,
+    "region": "Laguna",
+    "address": "45 Bulaklak St., Southwoods, Binan",
+    "zip code": 4024
+  }
+]

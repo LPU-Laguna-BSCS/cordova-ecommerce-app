@@ -58,15 +58,18 @@
       <!--h5 class="title-header">Shopzilla</h5 -->
       <img src="https://imgur.com/M0V50Xr.png" height="20px" />
 
-      <a href="profile.html" class="btn-header">
-        <i class="material-icons md-account_circle"></i>
-      </a>
+      <a href="" id="home-header-last-item"></a>
     </header>
     <!-- app-header.// -->
 
     <main class="app-content">
       <section class="px-3 pt-1">
-        <input type="text" placeholder="Search" class="form-control bg-light" />
+        <input
+          type="text"
+          placeholder="Search"
+          class="form-control bg-light"
+          disabled
+        />
       </section>
 
       <section class="p-3">
@@ -100,7 +103,12 @@
         </a>
 
         <div class="d-flex">
-          <a href="#" class="m-1 btn w-100 btn-sm btn-light"> Help </a>
+          <a
+            href="mailto:support@gmail.com"
+            class="m-1 btn w-100 btn-sm btn-light"
+          >
+            Help
+          </a>
           <a href="#" class="m-1 btn w-100 btn-sm btn-light"> Payment </a>
           <a href="about.html" class="m-1 btn w-100 btn-sm btn-light">
             About
@@ -141,41 +149,9 @@
           data-bs-dismiss="offcanvas"
           aria-label="Close"
         ></button>
-        <a href="#" class="icontext">
-          <img src="images/avatars/1.jpg" class="icon avatar-sm" alt="" />
-          <div class="text">
-            <h6 class="mb-0">Hi Jackson</h6>
-            <small>My profile</small>
-          </div>
-        </a>
+        <a href="#" class="icontext" id="home-sidebar-account"></a>
       </header>
-      <article class="offcanvas-body">
-        <nav class="nav-sidebar mt-2">
-          <a href="#">
-            <i class="material-icons md-local_offer"></i> New offers</a
-          >
-          <a href="#"> <i class="material-icons md-store"></i> Wholsesalers </a>
-          <hr />
-          <a href="#"> <i class="material-icons md-info"></i> About us</a>
-          <a href="#">
-            <i class="material-icons md-chat"></i> Help &amp; support
-          </a>
-          <a href="#">
-            <i class="material-icons md-local_police"></i> Services
-          </a>
-          <hr />
-          <a href="#">
-            <i class="material-icons md-account_circle"></i> Profile
-          </a>
-          <a href="#"> <i class="material-icons md-settings"></i> Settings</a>
-          <a href="#">
-            <i class="material-icons md-local_shipping"></i> My orders</a
-          >
-          <a href="#" id="logout-button">
-            <i class="material-icons md-log_out"></i> Logout</a
-          >
-        </nav>
-      </article>
+      <article class="offcanvas-body" id="home-sidebar-section"></article>
       <!-- offcanvas-body .// -->
     </aside>
     <!-- offcanvas.// -->

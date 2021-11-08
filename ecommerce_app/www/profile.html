@@ -18,7 +18,7 @@
     <meta name="”theme-color”" content="”#0d6efd" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
 
-    <title>App title - mobile html template</title>
+    <title>Shopzilla - Profile</title>
 
     <link href="images/favicon.ico" rel="shortcut icon" type="image/x-icon" />
 
@@ -37,24 +37,7 @@
   </head>
   <body>
     <main class="app-content">
-      <section class="p-3 bg-primary">
-        <a href="settings.html" class="float-end"
-          ><i class="material-icons md-edit text-white"></i
-        ></a>
-        <figure
-          class="icontext align-items-center mr-4"
-          style="max-width: 300px;"
-        >
-          <img class="icon icon-md rounded-circle" src="images/avatars/1.jpg" />
-          <figcaption class="text text-white">
-            <p class="h5 title mb-1">Mr. Jackson</p>
-            <p class="text-white-50 lh-sm">
-              +13012345678 <br />
-              @vosidiy
-            </p>
-          </figcaption>
-        </figure>
-      </section>
+      <section class="p-3 bg-primary" id="header-account"></section>
 
       <section class="p-3">
         <ul class="row">
@@ -87,73 +70,18 @@
 
       <hr class="divider" />
 
-      <section>
-        <h5 class="title-section pb-2">Orders</h5>
-        <nav class="nav-list">
-          <a class="btn-list" href="#">
-            <span class="float-end badge bg-warning">3</span>
-            <span class="text">On proccess</span>
-          </a>
-          <a class="btn-list" href="#">
-            <span class="float-end badge bg-success">1</span>
-            <span class="text">Shipped</span>
-          </a>
-          <a class="btn-list" href="#">
-            <span class="float-end badge bg-secondary">0</span>
-            <small class="title"></small>
-            <span class="text">Unpaid</span>
-          </a>
-        </nav>
-      </section>
+      <section id="order-section"></section>
       <hr class="divider" />
       <section>
         <h5 class="title-section pb-2">Account</h5>
 
         <nav class="nav-list">
-          <a class="btn-list" href="#">
+          <a class="btn-list" href="profile-edit.html">
             <i class="icon-control material-icons md-keyboard_arrow_right"></i>
             <span class="text">Settings</span>
           </a>
-          <a class="btn-list" href="#">
-            <i class="icon-control material-icons md-keyboard_arrow_right"></i>
-            <span class="text">Support</span>
-          </a>
-          <div class="btn-list">
-            <div class="float-end form-check form-switch">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                id="check_notify1"
-              />
-              <label class="form-check-label" for="check_notify1"></label>
-            </div>
-            <span class="text">Notifications</span>
-          </div>
         </nav>
       </section>
-
-      <hr class="divider" />
-      <section>
-        <h5 class="title-section pb-2">Personal</h5>
-        <nav class="nav-list">
-          <a class="btn-list" href="profile-edit.html">
-            <i class="icon-control material-icons md-edit"></i>
-            <small class="title">Username</small>
-            <span class="text">@vosidiy</span>
-          </a>
-          <a class="btn-list" href="profile-edit.html">
-            <i class="icon-control material-icons md-edit"></i>
-            <small class="title">Email</small>
-            <span class="text">myname@gmail.com</span>
-          </a>
-        </nav>
-      </section>
-
-      <p class="text-center my-3">
-        <a href="index.html" class="btn btn-light">
-          <i class="material-icons md-arrow_back"></i> Back to all pages
-        </a>
-      </p>
     </main>
     <!-- app-content.// -->
 
@@ -185,6 +113,9 @@
 
     <!-- custom javascript -->
     <script src="js/script.js" type="text/javascript"></script>
+
+    <!-- custom javascript -->
+    <script src="js/profile.js" type="text/javascript"></script>
 
     <!-- PWA -->
     <script src="js/pwa.js"></script>
