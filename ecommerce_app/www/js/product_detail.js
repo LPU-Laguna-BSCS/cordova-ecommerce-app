@@ -2,17 +2,17 @@
 var storage = window.localStorage;
 var productData;
 
+// Additional storage variables
+var productsFromLocalStorage = JSON.parse(storage.getItem("products"));
+var skusFromLocalStorage = JSON.parse(storage.getItem("skus"));
+var imagesFromLocalStorage = JSON.parse(storage.getItem("images"));
+var categoriesFromLocalStorage = JSON.parse(storage.getItem("categories"));
+var categories_productFromLocalStorage = JSON.parse(
+  storage.getItem("categories_product")
+);
+
 // Event listener when page is loaded
 document.addEventListener("DOMContentLoaded", function () {
-  // Additional storage variables
-  var productsFromLocalStorage = JSON.parse(storage.getItem("products"));
-  var skusFromLocalStorage = JSON.parse(storage.getItem("skus"));
-  var imagesFromLocalStorage = JSON.parse(storage.getItem("images"));
-  var categoriesFromLocalStorage = JSON.parse(storage.getItem("categories"));
-  var categories_productFromLocalStorage = JSON.parse(
-    storage.getItem("categories_product")
-  );
-
   // Finds the add to cart button in the page
   var atc = document.getElementById("add-to-cart-button");
 
