@@ -1,16 +1,16 @@
 // Event listener for when device is ready
 document.addEventListener("deviceready", onDeviceReady, false);
 
+// Local Storage variable
 var storage = window.localStorage;
 
+// Used to access current logged in user
 var loggedInUser;
-
-// var accountsSTRING = JSON.stringify(accounts);
-// storage.setItem("accounts", accountsSTRING);
 
 // Event listener when page is loaded
 document.addEventListener("DOMContentLoaded", function () {
-  var loggedInUser = JSON.parse(storage.getItem("loggedInUser"));
+  // Fetch logged in user
+  loggedInUser = JSON.parse(storage.getItem("loggedInUser"));
 
   // Sets components to either go to login or profile page depending on whether user is logged in
   if (loggedInUser) {
@@ -95,6 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
         ><span class="text">Login</span>
       </a>`;
 
+    // Displays "Hi Guest" when there is no logged in user
     var sidebar_account_item = document.getElementById("home-sidebar-account");
     sidebar_account_item.innerHTML =
       sidebar_account_item.innerHTML +
@@ -103,6 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
            <h6 class="mb-0">Hi Guest</h6>
         </div>`;
 
+    // Displays login and sign up buttons when there is no logged in user
     var sidebar_item = document.getElementById("home-sidebar-section");
     sidebar_item.innerHTML =
       sidebar_item.innerHTML +
@@ -117,8 +119,9 @@ document.addEventListener("DOMContentLoaded", function () {
      </nav>`;
   }
 
+  // Finds the logout button on the page
   var lob = document.getElementById("logout-button");
-
+  // Sets an event listener for the logout button
   if (lob) {
     lob.addEventListener("click", logoutHandler);
   }
@@ -128,7 +131,6 @@ document.addEventListener("DOMContentLoaded", function () {
 function onDeviceReady() {
   // Cordova is now initialized. Have fun!
   console.log("Running cordova-" + cordova.platformId + "@" + cordova.version);
-  // checkLocalStorage();
 
   // Storage variables
   var productsFromLocalStorage = JSON.parse(storage.getItem("products"));
@@ -139,54 +141,7 @@ function onDeviceReady() {
     storage.getItem("categories_product")
   );
 
-  // Returns an array of all products in the database
-  var data = [];
-
-  try {
-    for (const p of productsFromLocalStorage) {
-      var id = p.id;
-      var name = p.name;
-      var prices = [];
-      var images = [];
-      var categories = [];
-
-      for (const s of skusFromLocalStorage) {
-        if (s.product_id == id) {
-          prices.push(s.price);
-        }
-      }
-
-      for (const i of imagesFromLocalStorage) {
-        if (i.product_id == id) {
-          images.push(i.link);
-        }
-      }
-
-      for (const cp of categories_productFromLocalStorage) {
-        if (cp.product_id == id) {
-          for (const category of categoriesFromLocalStorage) {
-            if (cp.category_id == category.id) {
-              categories.push(category.name);
-            }
-          }
-        }
-      }
-
-      var d = {
-        id: id,
-        name: name,
-        price: Math.min(...prices),
-        image: images[0],
-        categories: categories,
-      };
-
-      data.push(d);
-    }
-  } catch (e) {
-    alert(e);
-  }
-
-  // alert(JSON.stringify(data[0]));
+  var data = getCartProductsData();
 
   try {
     var category_section = document.getElementById("category_section");
@@ -300,6 +255,65 @@ function onDeviceReady() {
   }
 }
 
+// Returns an array of all products in the database
+function getProductsData() {
+  var data = [];
+
+  try {
+    for (const p of productsFromLocalStorage) {
+      var id = p.id;
+      var name = p.name;
+      var description = p.description;
+      var variant;
+      var variant_options = [];
+      var prices = [];
+      var images = [];
+      var categories = [];
+
+      for (const s of skusFromLocalStorage) {
+        if (s.product_id == id) {
+          prices.push(s.price);
+          variant_options.push(s);
+          variant = s.variant;
+        }
+      }
+
+      for (const i of imagesFromLocalStorage) {
+        if (i.product_id == id) {
+          images.push(i.link);
+        }
+      }
+
+      for (const cp of categories_productFromLocalStorage) {
+        if (cp.product_id == id) {
+          for (const category of categoriesFromLocalStorage) {
+            if (cp.category_id == category.id) {
+              categories.push(category.name);
+            }
+          }
+        }
+      }
+
+      var d = {
+        id: id,
+        name: name,
+        description: description,
+        variant: variant,
+        variant_options: variant_options,
+        price: Math.min(...prices),
+        images: images,
+        categories: categories,
+      };
+
+      data.push(d);
+    }
+  } catch (e) {
+    alert(e);
+  }
+
+  return data;
+}
+
 // Currency formatter to be Php XX.XX
 var formatter = new Intl.NumberFormat("en-US", {
   style: "currency",
@@ -316,45 +330,6 @@ function logoutHandler(element) {
   try {
     storage.removeItem("loggedInUser");
     location.href = "index.html";
-  } catch (e) {
-    alert(e);
-  }
-}
-
-// Tests if local storage has data propagated
-function checkLocalStorage() {
-  try {
-    var productsFromLocalStorage = JSON.parse(storage.getItem("products"));
-    alert(JSON.stringify(productsFromLocalStorage[0]));
-
-    var skusFromLocalStorage = JSON.parse(storage.getItem("skus"));
-    alert(JSON.stringify(skusFromLocalStorage[0]));
-
-    var imagesFromLocalStorage = JSON.parse(storage.getItem("images"));
-    alert(JSON.stringify(imagesFromLocalStorage[0]));
-
-    var categoriesFromLocalStorage = JSON.parse(storage.getItem("categories"));
-    alert(JSON.stringify(categoriesFromLocalStorage[0]));
-
-    var categories_productFromLocalStorage = JSON.parse(
-      storage.getItem("categories_product")
-    );
-    alert(JSON.stringify(categories_productFromLocalStorage[0]));
-
-    var accountsFromLocalStorage = JSON.parse(storage.getItem("accounts"));
-    alert(JSON.stringify(accountsFromLocalStorage[0]));
-
-    var addressesFromLocalStorage = JSON.parse(storage.getItem("addresses"));
-    alert(JSON.stringify(addressesFromLocalStorage[0]));
-
-    var paymentsFromLocalStorage = JSON.parse(storage.getItem("payments"));
-    alert(JSON.stringify(paymentsFromLocalStorage[0]));
-
-    var cartFromLocalStorage = JSON.parse(storage.getItem("cart"));
-    alert(JSON.stringify(cartFromLocalStorage[0]));
-
-    var ordersFromLocalStorage = JSON.parse(storage.getItem("orders"));
-    alert(JSON.stringify(ordersFromLocalStorage[0]));
   } catch (e) {
     alert(e);
   }

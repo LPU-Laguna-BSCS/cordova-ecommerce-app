@@ -24,9 +24,15 @@ for (const p of parameters) {
 
 // Event listener when page is loaded
 document.addEventListener("DOMContentLoaded", function () {
+  // Fetches the logged in user from local storage
   var loggedInUser = JSON.parse(storage.getItem("loggedInUser"));
+
+  // Checks whether user is logged in or not
   if (loggedInUser) {
+    // Find the upper order section
     var order_account_detail = document.getElementById("order-account-details");
+
+    // Sets the html of the upper order section
     order_account_detail.innerHTML =
       order_account_detail.innerHTML +
       `
@@ -49,11 +55,16 @@ document.addEventListener("DOMContentLoaded", function () {
       `;
 
     try {
-      // var orderData;
+      // Fetches all the products from the database
       var data = getProductsData();
+
+      // Array that will contain all cart products
       var cart_products = [];
+
+      // Array that will contain all cart products' id's
       var cart_ids = [];
 
+      // Iterate through items in cart that are of the user and are not yet ongoing and completed
       for (const cart of cartFromLocalStorage) {
         if (
           cart.account_id == loggedInUser.id &&
@@ -89,6 +100,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
       }
 
+      // Preparation of data to be added to orders database
       var orderData = {
         id: ordersFromLocalStorage.length + 1,
         account_id: loggedInUser.id,
@@ -98,14 +110,18 @@ document.addEventListener("DOMContentLoaded", function () {
         create_date: new Date(),
       };
 
+      // Pushes the new data to orders table
       ordersFromLocalStorage.push(orderData);
-      // alert(JSON.stringify(ordersFromLocalStorage));
+
+      // Updates the orders table in local storage
       storage.setItem("orders", JSON.stringify(ordersFromLocalStorage));
 
       //Displays details about the product ordered
       var order_product_details = document.getElementById(
         "order-product-details"
       );
+
+      // Adds five days from now as estimated delivery date
       var d = new Date();
       var numberOfDaysToAdd = 5;
       d.setDate(d.getDate() + numberOfDaysToAdd);
@@ -123,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <b>Estimate delivery:</b> ${d_formatted}<br>
         `;
 
-      //Diplays the Product Ordered
+      //Diplays list of products ordered
       var order_products = document.getElementById("order-products");
       for (const cart_product of cart_products) {
         order_products.innerHTML =
@@ -140,6 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
         </tr>
         `;
 
+        // Changes the cart item's ongoing state from FALSE to TRUE
         for (let i = 0; i < cartFromLocalStorage.length; i++) {
           var cart = cartFromLocalStorage[i];
           if (cart.id == cart_product.cart_id) {
@@ -150,6 +167,7 @@ document.addEventListener("DOMContentLoaded", function () {
           }
         }
 
+        // Updates the quantity of the sku's
         for (let i = 0; i < skusFromLocalStorage.length; i++) {
           var sku = skusFromLocalStorage[i];
           if (sku.sku == cart_product.sku) {
@@ -171,6 +189,7 @@ function getProductsData() {
   var data = [];
 
   try {
+    // Iterate through products from database
     for (const p of productsFromLocalStorage) {
       var id = p.id;
       var name = p.name;
@@ -181,6 +200,7 @@ function getProductsData() {
       var images = [];
       var categories = [];
 
+      // Iterate through skus and find relevant items connected to product
       for (const s of skusFromLocalStorage) {
         if (s.product_id == id) {
           prices.push(s.price);
@@ -189,12 +209,14 @@ function getProductsData() {
         }
       }
 
+      // Iterate through images and find relevant items connected to product
       for (const i of imagesFromLocalStorage) {
         if (i.product_id == id) {
           images.push(i.link);
         }
       }
 
+      // Iterate through categories_product and find relevant items connected to product
       for (const cp of categories_productFromLocalStorage) {
         if (cp.product_id == id) {
           for (const category of categoriesFromLocalStorage) {
@@ -205,6 +227,7 @@ function getProductsData() {
         }
       }
 
+      // Prepares the data to be pushed to the database
       var d = {
         id: id,
         name: name,

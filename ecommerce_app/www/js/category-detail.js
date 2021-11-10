@@ -11,85 +11,47 @@ document.addEventListener("DOMContentLoaded", function () {
     storage.getItem("categories_product")
   );
 
-  // Returns an array of all products in the database
-  var data = [];
+  // Data variable of all the products in the database
+  var data = getProductsData();
 
-  try {
-    for (const p of productsFromLocalStorage) {
-      var id = p.id;
-      var name = p.name;
-      var description = p.description;
-      var variant;
-      var variant_options = [];
-      var prices = [];
-      var images = [];
-      var categories = [];
-
-      for (const s of skusFromLocalStorage) {
-        if (s.product_id == id) {
-          prices.push(s.price);
-          variant_options.push(s);
-          variant = s.variant;
-        }
-      }
-
-      for (const i of imagesFromLocalStorage) {
-        if (i.product_id == id) {
-          images.push(i.link);
-        }
-      }
-
-      for (const cp of categories_productFromLocalStorage) {
-        if (cp.product_id == id) {
-          for (const category of categoriesFromLocalStorage) {
-            if (cp.category_id == category.id) {
-              categories.push(category.name);
-            }
-          }
-        }
-      }
-
-      var d = {
-        id: id,
-        name: name,
-        description: description,
-        variant: variant,
-        variant_options: variant_options,
-        price: Math.min(...prices),
-        images: images,
-        categories: categories,
-      };
-
-      data.push(d);
-    }
-  } catch (e) {
-    alert(e);
-  }
-
+  // Parses the query string to get the category id to display
   var id = parseInt(location.href.split("=")[1]);
+
+  // Category variable to be displayed
   var categoryData;
+
+  // Category items to display
   var categoryItems = [];
 
+  // Iterate through categories and find item that matches id
   for (const category of categoriesFromLocalStorage) {
     if (category.id == id) {
       categoryData = category;
     }
   }
 
+  // Iterate through data containing products and find relevant to category
   for (const item of data) {
     if (item.categories.indexOf(categoryData.name) > -1) {
       categoryItems.push(item);
     }
   }
 
+  // Find the title section on the page
   var category_title = document.getElementById("category-title");
+
+  // Set the category name on the html
   category_title.innerHTML = categoryData.name;
 
   try {
+    // Find the section to display the list of categories
     var category_list_section = document.getElementById(
       "category-list-section"
     );
+
+    // Iterate through categories
     for (const c of categoriesFromLocalStorage) {
+      // List out all the categories
       category_list_section.innerHTML =
         category_list_section.innerHTML +
         `
@@ -112,9 +74,12 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   try {
-    //Displays list of products
+    // Finds the section to display category products
     var product_list_section = document.getElementById("product-list-section");
+
+    // Iterate through category items
     for (const c of categoryItems) {
+      // Display items on the
       product_list_section.innerHTML =
         product_list_section.innerHTML +
         `
@@ -141,6 +106,71 @@ document.addEventListener("DOMContentLoaded", function () {
     alert(e);
   }
 });
+
+// Returns an array of all products in the database
+function getProductsData() {
+  var data = [];
+
+  try {
+    // Iterate through products from database
+    for (const p of productsFromLocalStorage) {
+      var id = p.id;
+      var name = p.name;
+      var description = p.description;
+      var variant;
+      var variant_options = [];
+      var prices = [];
+      var images = [];
+      var categories = [];
+
+      // Iterate through skus and find relevant items connected to product
+      for (const s of skusFromLocalStorage) {
+        if (s.product_id == id) {
+          prices.push(s.price);
+          variant_options.push(s);
+          variant = s.variant;
+        }
+      }
+
+      // Iterate through image and find relevant items connected to product
+      for (const i of imagesFromLocalStorage) {
+        if (i.product_id == id) {
+          images.push(i.link);
+        }
+      }
+
+      // Iterate through categories and find relevant items connected to product
+      for (const cp of categories_productFromLocalStorage) {
+        if (cp.product_id == id) {
+          for (const category of categoriesFromLocalStorage) {
+            if (cp.category_id == category.id) {
+              categories.push(category.name);
+            }
+          }
+        }
+      }
+
+      // Form json to be imported to data array
+      var d = {
+        id: id,
+        name: name,
+        description: description,
+        variant: variant,
+        variant_options: variant_options,
+        price: Math.min(...prices),
+        images: images,
+        categories: categories,
+      };
+
+      // Push to data array
+      data.push(d);
+    }
+  } catch (e) {
+    alert(e);
+  }
+
+  return data;
+}
 
 // Currency formatter to be Php XX.XX
 var formatter = new Intl.NumberFormat("en-US", {

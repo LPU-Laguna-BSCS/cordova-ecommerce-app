@@ -13,21 +13,28 @@ var cartInLocalStorage = JSON.parse(storage.getItem("cart"));
 var addressesFromLocalStorage = JSON.parse(storage.getItem("addresses"));
 var loggedInUser = JSON.parse(storage.getItem("loggedInUser"));
 
+// Parses the query string and stores the id from order step 1 in a variable
 var address_id = parseInt(location.href.split("=")[1]);
 
 // Event listener when page is loaded
 document.addEventListener("DOMContentLoaded", function () {
+  // Fetches the cart data
   getCartProductsData();
 });
 
 // Onclick function ran when the next button is pressed in the order steps
 function moveToStepThree() {
+  // Finds and retrieves value of the selected payment method
   var chosen_payment = $('input[type="radio"]:checked').val();
+  // Converts string to integer
   var chosen_payment_parsed = parseInt(chosen_payment);
 
+  // Checks if payment method is cash (0) or credit cart (1)
   if (chosen_payment_parsed == 1) {
+    //Redirects the user to order-success.html if the chosen payment method is cash payment
     location.href = `order-success.html?address_id=${address_id}&payment_id=0`;
   } else {
+    //Redirects the user to order-step3.html if the chosen payment method is card payment via visa
     location.href = `order-step3.html?address_id=${address_id}`;
   }
 }
@@ -42,10 +49,12 @@ var formatter = new Intl.NumberFormat("en-US", {
   //maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
 });
 
+// Returns an array of all products in the database
 function getProductsData() {
   var data = [];
 
   try {
+    // Iterate through products from database
     for (const p of productsFromLocalStorage) {
       var id = p.id;
       var name = p.name;
@@ -56,6 +65,7 @@ function getProductsData() {
       var images = [];
       var categories = [];
 
+      // Iterate through skus and find relevant items connected to product
       for (const s of skusFromLocalStorage) {
         if (s.product_id == id) {
           prices.push(s.price);
@@ -64,12 +74,14 @@ function getProductsData() {
         }
       }
 
+      // Iterate through image and find relevant items connected to product
       for (const i of imagesFromLocalStorage) {
         if (i.product_id == id) {
           images.push(i.link);
         }
       }
 
+      // Iterate through categories and find relevant items connected to product
       for (const cp of categories_productFromLocalStorage) {
         if (cp.product_id == id) {
           for (const category of categoriesFromLocalStorage) {
@@ -80,6 +92,7 @@ function getProductsData() {
         }
       }
 
+      // Form json to be imported to data array
       var d = {
         id: id,
         name: name,
@@ -91,6 +104,7 @@ function getProductsData() {
         categories: categories,
       };
 
+      // Push to data array
       data.push(d);
     }
   } catch (e) {
@@ -103,9 +117,14 @@ function getProductsData() {
 // Fetches all items in the cart of the user
 function getCartProductsData() {
   var data = getProductsData();
+
+  // Array that will hold cart items
   var cart_products = [];
+
+  // Array that will hold cart prices
   var cart_products_prices = [];
 
+  // Iterate through cart database and find items that belong to user and are still not yet ongoing nor completed
   for (const cart of cartInLocalStorage) {
     if (
       cart.account_id == loggedInUser.id &&
@@ -139,22 +158,32 @@ function getCartProductsData() {
       }
     }
   }
+
+  // Pushes the prices of the products in the cart to array
   if (cart_products.length > 0) {
     for (const c of cart_products) {
       cart_products_prices.push(c.quantity * c.price);
     }
   }
 
+  // Adds cart summary of prices
   updateCartSummary(cart_products_prices);
 }
 
 // Displays the total amount including shipping costs in the HTML
 function updateCartSummary(cart_products_prices) {
+  // Computes the total price of the products
   var total = cart_products_prices.reduce(function (a, b) {
     return a + b;
   }, 0);
+
+  // Fetches the cart summary section
   var order_summary = document.getElementById("order-summary");
+
+  // Makes sure it's blank
   order_summary.innerHTML = "";
+
+  // Updates the HTML of the cart summary section
   order_summary.innerHTML =
     order_summary.innerHTML +
     `

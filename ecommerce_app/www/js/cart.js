@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
     location.href = "login.html";
   }
 
+  // Fetches all cart items that are still ongoing
   getCartProductsData();
 });
 
@@ -35,6 +36,7 @@ function getProductsData() {
   var data = [];
 
   try {
+    // Iterate through products from database
     for (const p of productsFromLocalStorage) {
       var id = p.id;
       var name = p.name;
@@ -45,6 +47,7 @@ function getProductsData() {
       var images = [];
       var categories = [];
 
+      // Iterate through skus and find relevant items connected to product
       for (const s of skusFromLocalStorage) {
         if (s.product_id == id) {
           prices.push(s.price);
@@ -53,12 +56,14 @@ function getProductsData() {
         }
       }
 
+      // Iterate through image and find relevant items connected to product
       for (const i of imagesFromLocalStorage) {
         if (i.product_id == id) {
           images.push(i.link);
         }
       }
 
+      // Iterate through categories and find relevant items connected to product
       for (const cp of categories_productFromLocalStorage) {
         if (cp.product_id == id) {
           for (const category of categoriesFromLocalStorage) {
@@ -69,6 +74,7 @@ function getProductsData() {
         }
       }
 
+      // Form json to be imported to data array
       var d = {
         id: id,
         name: name,
@@ -80,6 +86,7 @@ function getProductsData() {
         categories: categories,
       };
 
+      // Push to data array
       data.push(d);
     }
   } catch (e) {
@@ -92,11 +99,20 @@ function getProductsData() {
 // Fetches cart items and sets HTML
 function getCartProductsData() {
   var data = getProductsData();
+
+  // Get section from HTML
   var cart_items_section = document.getElementById("cart-items-section");
+
+  // Make sure it's blank first
   cart_items_section.innerHTML = "";
+
+  // Array that will hold cart items
   var cart_products = [];
+
+  // Array that will hold cart prices
   var cart_products_prices = [];
 
+  // Iterate through cart database and find items that belong to user and are still not yet ongoing nor completed
   for (const cart of cartFromLocalStorage) {
     if (
       cart.account_id == loggedInUser.id &&
@@ -131,6 +147,7 @@ function getCartProductsData() {
     }
   }
 
+  // Displays list of products if there items in the cart
   if (cart_products.length > 0) {
     for (const c of cart_products) {
       cart_products_prices.push(c.quantity * c.price);
@@ -188,6 +205,7 @@ function getCartProductsData() {
       `;
     }
   } else {
+    // Displays "No items to display"
     cart_items_section.innerHTML =
       cart_items_section.innerHTML +
       `
@@ -196,9 +214,11 @@ function getCartProductsData() {
         </div>`;
   }
 
+  // Adds cart summary of prices
   updateCartSummary(cart_products_prices);
 }
 
+//Function to remove items on the cart
 function removeCartItem(cart_id) {
   var cartFromLocalStorage = JSON.parse(storage.getItem("cart"));
   var filtered = cartFromLocalStorage.filter(function (cart) {
@@ -208,6 +228,7 @@ function removeCartItem(cart_id) {
   location.href = "cart.html";
 }
 
+// Function to subtract quantity of items on the cart
 function subtractQuantity(cart_id, n) {
   var cartFromLocalStorage = JSON.parse(storage.getItem("cart"));
   for (let i = 0; i < cartFromLocalStorage.length; i++) {
@@ -220,9 +241,9 @@ function subtractQuantity(cart_id, n) {
     }
   }
   location.href = "cart.html";
-  // getCartProductsData();
 }
 
+// Function to add quantity of items on the cart
 function addQuantity(cart_id, n) {
   var cartFromLocalStorage = JSON.parse(storage.getItem("cart"));
   for (let i = 0; i < cartFromLocalStorage.length; i++) {
@@ -235,15 +256,22 @@ function addQuantity(cart_id, n) {
     }
   }
   location.href = "cart.html";
-  // getCartProductsData();
 }
 
+// Displays the summary of the products on the cart
 function updateCartSummary(cart_products_prices) {
+  // Computes the total price of the products
   var total = cart_products_prices.reduce(function (a, b) {
     return a + b;
   }, 0);
+
+  // Fetches the cart summary section
   var cart_summary = document.getElementById("cart-summary");
+
+  // Makes sure it's blank
   cart_summary.innerHTML = "";
+
+  // Updates the HTML of the cart summary section
   cart_summary.innerHTML =
     cart_summary.innerHTML +
     `

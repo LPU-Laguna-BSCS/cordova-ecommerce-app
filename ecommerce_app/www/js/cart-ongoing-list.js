@@ -36,6 +36,7 @@ function getProductsData() {
   var data = [];
 
   try {
+    // Iterate through products from database
     for (const p of productsFromLocalStorage) {
       var id = p.id;
       var name = p.name;
@@ -46,6 +47,7 @@ function getProductsData() {
       var images = [];
       var categories = [];
 
+      // Iterate through skus and find relevant items connected to product
       for (const s of skusFromLocalStorage) {
         if (s.product_id == id) {
           prices.push(s.price);
@@ -54,12 +56,14 @@ function getProductsData() {
         }
       }
 
+      // Iterate through image and find relevant items connected to product
       for (const i of imagesFromLocalStorage) {
         if (i.product_id == id) {
           images.push(i.link);
         }
       }
 
+      // Iterate through categories and find relevant items connected to product
       for (const cp of categories_productFromLocalStorage) {
         if (cp.product_id == id) {
           for (const category of categoriesFromLocalStorage) {
@@ -70,6 +74,7 @@ function getProductsData() {
         }
       }
 
+      // Form json to be imported to data array
       var d = {
         id: id,
         name: name,
@@ -81,6 +86,7 @@ function getProductsData() {
         categories: categories,
       };
 
+      // Push to data array
       data.push(d);
     }
   } catch (e) {
@@ -93,12 +99,19 @@ function getProductsData() {
 // Fetches cart items and sets HTML
 function getCartProductsData() {
   var data = getProductsData();
+
+  // Get section from HTML
   var cart_ongoing_items_section = document.getElementById(
     "cart-ongoing-items-section"
   );
+
+  // Make sure it's blank first
   cart_ongoing_items_section.innerHTML = "";
+
+  // Array that will hold cart items
   var cart_products = [];
 
+  // Iterate through cart database and find items that belong to user and are ongoing
   for (const cart of cartInLocalStorage) {
     if (cart.account_id == loggedInUser.id && cart.is_ongoing == "TRUE") {
       for (const sku of skusFromLocalStorage) {
@@ -130,6 +143,7 @@ function getCartProductsData() {
     }
   }
 
+  // Displays list of products ongoing
   if (cart_products.length > 0) {
     for (const c of cart_products) {
       cart_ongoing_items_section.innerHTML =
@@ -156,6 +170,7 @@ function getCartProductsData() {
       `;
     }
   } else {
+    // Displays "No items to display"
     cart_ongoing_items_section.innerHTML =
       cart_ongoing_items_section.innerHTML +
       `

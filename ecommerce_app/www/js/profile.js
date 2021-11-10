@@ -1,3 +1,4 @@
+// Storage variables
 var storage = window.localStorage;
 var productsFromLocalStorage = JSON.parse(storage.getItem("products"));
 var skusFromLocalStorage = JSON.parse(storage.getItem("skus"));
@@ -12,9 +13,14 @@ var loggedInUser;
 
 // Event listener when page is loaded
 document.addEventListener("DOMContentLoaded", function () {
+  // Fetches the logged in user from database
   var loggedInUser = JSON.parse(storage.getItem("loggedInUser"));
+
+  // Checks whether user is logged in or not
   if (loggedInUser) {
+    // Finds the header account section in page
     var profile_account = document.getElementById("header-account");
+    // Sets the header account html
     profile_account.innerHTML =
       profile_account.innerHTML +
       `
@@ -36,21 +42,25 @@ document.addEventListener("DOMContentLoaded", function () {
         </figure>
       `;
 
+    // Initial counts of ongoing and completed items
     var cart_products_is_ongoing = 0;
     var cart_products_is_completed = 0;
 
+    // Checks for the count of ongoing orders of the user
     for (const cart of cartInLocalStorage) {
       if (cart.account_id == loggedInUser.id && cart.is_ongoing == "TRUE") {
         cart_products_is_ongoing++;
       }
     }
 
+    // Checks for the count of completed orders of the user
     for (const cart of cartInLocalStorage) {
       if (cart.account_id == loggedInUser.id && cart.is_completed == "TRUE") {
         cart_products_is_completed++;
       }
     }
 
+    // Displays the order section
     var order_section = document.getElementById("order-section");
     order_section.innerHTML =
       order_section.innerHTML +
