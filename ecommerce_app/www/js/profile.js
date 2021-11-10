@@ -77,5 +77,20 @@ document.addEventListener("DOMContentLoaded", function () {
           </a>
         </nav>
       `;
+
+    var device_info = document.getElementById("device-info");
+    // Displays app language used
+    navigator.globalization.getPreferredLanguage(
+      function (language) {
+        device_info.innerHTML =
+          device_info.innerHTML + `Language: ${language.value} <br>`;
+      },
+      function () {
+        alert("Error getting language\n");
+      }
+    );
+
+    var deviceVersion = device.version;
+    device_info.innerHTML = device_info.innerHTML + `Version: ${deviceVersion}`;
   }
 });

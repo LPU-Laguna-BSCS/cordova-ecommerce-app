@@ -56,7 +56,7 @@
         <icon src="res/icon/android/xxxhdpi.png" density="xxxhdpi" />
 
         <access origin="*" />
-        <preferance name="android-usesCleartextTraffic" value="true" />
+        <preference name="android-usesCleartextTraffic" value="true" />
         <allow-navigation href="*" />
     </platform>
     <platform name="ios">

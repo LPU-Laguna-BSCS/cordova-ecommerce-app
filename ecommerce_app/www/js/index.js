@@ -4,6 +4,15 @@ document.addEventListener("deviceready", onDeviceReady, false);
 // Local Storage variable
 var storage = window.localStorage;
 
+// Storage variables
+var productsFromLocalStorage = JSON.parse(storage.getItem("products"));
+var skusFromLocalStorage = JSON.parse(storage.getItem("skus"));
+var imagesFromLocalStorage = JSON.parse(storage.getItem("images"));
+var categoriesFromLocalStorage = JSON.parse(storage.getItem("categories"));
+var categories_productFromLocalStorage = JSON.parse(
+  storage.getItem("categories_product")
+);
+
 // Used to access current logged in user
 var loggedInUser;
 
@@ -132,16 +141,7 @@ function onDeviceReady() {
   // Cordova is now initialized. Have fun!
   console.log("Running cordova-" + cordova.platformId + "@" + cordova.version);
 
-  // Storage variables
-  var productsFromLocalStorage = JSON.parse(storage.getItem("products"));
-  var skusFromLocalStorage = JSON.parse(storage.getItem("skus"));
-  var imagesFromLocalStorage = JSON.parse(storage.getItem("images"));
-  var categoriesFromLocalStorage = JSON.parse(storage.getItem("categories"));
-  var categories_productFromLocalStorage = JSON.parse(
-    storage.getItem("categories_product")
-  );
-
-  var data = getCartProductsData();
+  var data = getProductsData();
 
   try {
     var category_section = document.getElementById("category_section");
