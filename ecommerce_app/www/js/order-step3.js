@@ -247,6 +247,7 @@ function updateCartSummary(cart_products_prices) {
     </p>
     <h6 class="mt-2">Total pay: <var>${formatter.format(total + 50)}</var></h6>
   `;
+  addButton(total);
 }
 
 // Dynamically displays the total amount to be paid on the text of the button

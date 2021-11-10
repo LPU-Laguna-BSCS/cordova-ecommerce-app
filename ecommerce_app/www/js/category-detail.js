@@ -1,16 +1,16 @@
+var storage = window.localStorage;
+
+// Storage variables
+var productsFromLocalStorage = JSON.parse(storage.getItem("products"));
+var skusFromLocalStorage = JSON.parse(storage.getItem("skus"));
+var imagesFromLocalStorage = JSON.parse(storage.getItem("images"));
+var categoriesFromLocalStorage = JSON.parse(storage.getItem("categories"));
+var categories_productFromLocalStorage = JSON.parse(
+  storage.getItem("categories_product")
+);
+
 // Event listener when page is loaded
 document.addEventListener("DOMContentLoaded", function () {
-  var storage = window.localStorage;
-
-  // Storage variables
-  var productsFromLocalStorage = JSON.parse(storage.getItem("products"));
-  var skusFromLocalStorage = JSON.parse(storage.getItem("skus"));
-  var imagesFromLocalStorage = JSON.parse(storage.getItem("images"));
-  var categoriesFromLocalStorage = JSON.parse(storage.getItem("categories"));
-  var categories_productFromLocalStorage = JSON.parse(
-    storage.getItem("categories_product")
-  );
-
   // Data variable of all the products in the database
   var data = getProductsData();
 

@@ -4,12 +4,6 @@ var loggedInUser = JSON.parse(storage.getItem("loggedInUser"));
 
 // Event listener when page is loaded
 document.addEventListener("DOMContentLoaded", function () {
-  // Checks whether user is logged in
-  if (loggedInUser) {
-    // Redirects user to home screen if not logged in
-    location.href = "index.html";
-  }
-
   // Finds the change password button on the page
   var cpb = document.getElementById("change-password-button");
 

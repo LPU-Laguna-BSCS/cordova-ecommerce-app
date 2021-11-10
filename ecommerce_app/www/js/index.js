@@ -301,7 +301,7 @@ function getProductsData() {
         variant: variant,
         variant_options: variant_options,
         price: Math.min(...prices),
-        images: images,
+        image: images[0],
         categories: categories,
       };
 
